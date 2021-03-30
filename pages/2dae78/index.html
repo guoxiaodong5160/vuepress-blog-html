@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ReentrantLock | 郭晓冬的博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/guoxiaodong5160/cdn-images@latest/blog-images/20210214155749.jpg">
+    <meta name="description" content="积一时之跬步,臻千里之遥程">
+    <meta name="keywords" content="java博客,博客,java,git,github,markdown">
+    <meta name="baidu-site-verification" content="7F55weZDDc">
+    <meta name="theme-color" content="#11a8cd">
+    <link rel="preload" href="/assets/css/0.styles.f617ac60.css" as="style"><link rel="preload" href="/assets/js/app.7f43635b.js" as="script"><link rel="preload" href="/assets/js/3.9d819986.js" as="script"><link rel="preload" href="/assets/js/13.766aff0b.js" as="script"><link rel="prefetch" href="/assets/js/1.caf74e1a.js"><link rel="prefetch" href="/assets/js/10.733e1d2a.js"><link rel="prefetch" href="/assets/js/11.dc3fb507.js"><link rel="prefetch" href="/assets/js/12.4d54631e.js"><link rel="prefetch" href="/assets/js/14.79e02750.js"><link rel="prefetch" href="/assets/js/15.2d56ba7d.js"><link rel="prefetch" href="/assets/js/16.bdc04eeb.js"><link rel="prefetch" href="/assets/js/17.9b15bb0e.js"><link rel="prefetch" href="/assets/js/18.252fa6ce.js"><link rel="prefetch" href="/assets/js/19.d2364ea6.js"><link rel="prefetch" href="/assets/js/20.bc4706ef.js"><link rel="prefetch" href="/assets/js/21.94ce669f.js"><link rel="prefetch" href="/assets/js/22.1c5b3cec.js"><link rel="prefetch" href="/assets/js/23.2f964bd6.js"><link rel="prefetch" href="/assets/js/24.86b0eb38.js"><link rel="prefetch" href="/assets/js/25.32d14eba.js"><link rel="prefetch" href="/assets/js/26.d1a47f0c.js"><link rel="prefetch" href="/assets/js/27.573dd67e.js"><link rel="prefetch" href="/assets/js/28.1840b87d.js"><link rel="prefetch" href="/assets/js/29.5515f1da.js"><link rel="prefetch" href="/assets/js/30.ceafac1f.js"><link rel="prefetch" href="/assets/js/31.6df9cd29.js"><link rel="prefetch" href="/assets/js/32.f653f334.js"><link rel="prefetch" href="/assets/js/33.522a33d9.js"><link rel="prefetch" href="/assets/js/34.411d2444.js"><link rel="prefetch" href="/assets/js/35.a5f2bf33.js"><link rel="prefetch" href="/assets/js/36.7d88a99e.js"><link rel="prefetch" href="/assets/js/37.d0c98eb1.js"><link rel="prefetch" href="/assets/js/38.f5676d43.js"><link rel="prefetch" href="/assets/js/39.8a36da5d.js"><link rel="prefetch" href="/assets/js/4.a94db4d8.js"><link rel="prefetch" href="/assets/js/40.fd0292fd.js"><link rel="prefetch" href="/assets/js/41.c51ac1c8.js"><link rel="prefetch" href="/assets/js/42.eb94cb3b.js"><link rel="prefetch" href="/assets/js/43.d19af916.js"><link rel="prefetch" href="/assets/js/44.60e66d4e.js"><link rel="prefetch" href="/assets/js/45.6d12e6c6.js"><link rel="prefetch" href="/assets/js/46.3df5678e.js"><link rel="prefetch" href="/assets/js/47.ae094be6.js"><link rel="prefetch" href="/assets/js/48.88f611cb.js"><link rel="prefetch" href="/assets/js/49.21f934ff.js"><link rel="prefetch" href="/assets/js/5.084354ce.js"><link rel="prefetch" href="/assets/js/50.9fbe67f4.js"><link rel="prefetch" href="/assets/js/51.dfda95e2.js"><link rel="prefetch" href="/assets/js/52.db68d960.js"><link rel="prefetch" href="/assets/js/53.280f9c11.js"><link rel="prefetch" href="/assets/js/54.f045285c.js"><link rel="prefetch" href="/assets/js/55.0d7ebfc3.js"><link rel="prefetch" href="/assets/js/56.f452121c.js"><link rel="prefetch" href="/assets/js/57.28a3da73.js"><link rel="prefetch" href="/assets/js/58.4b5de2e9.js"><link rel="prefetch" href="/assets/js/59.ef32719b.js"><link rel="prefetch" href="/assets/js/6.8586c4f3.js"><link rel="prefetch" href="/assets/js/60.3d9290dc.js"><link rel="prefetch" href="/assets/js/61.85b77783.js"><link rel="prefetch" href="/assets/js/62.eb5631f3.js"><link rel="prefetch" href="/assets/js/63.77b519f9.js"><link rel="prefetch" href="/assets/js/64.062f4370.js"><link rel="prefetch" href="/assets/js/65.c2a52bda.js"><link rel="prefetch" href="/assets/js/66.f16d157c.js"><link rel="prefetch" href="/assets/js/67.c09bfa1b.js"><link rel="prefetch" href="/assets/js/68.239ed4cb.js"><link rel="prefetch" href="/assets/js/69.4790d79b.js"><link rel="prefetch" href="/assets/js/7.21a8061e.js"><link rel="prefetch" href="/assets/js/70.9f63093a.js"><link rel="prefetch" href="/assets/js/71.3b9cf3c7.js"><link rel="prefetch" href="/assets/js/72.190028b1.js"><link rel="prefetch" href="/assets/js/73.3bdb325a.js"><link rel="prefetch" href="/assets/js/74.821890da.js"><link rel="prefetch" href="/assets/js/75.2bd791cc.js"><link rel="prefetch" href="/assets/js/76.d4dd26ec.js"><link rel="prefetch" href="/assets/js/77.9edba7ed.js"><link rel="prefetch" href="/assets/js/78.eed431ad.js"><link rel="prefetch" href="/assets/js/79.20602a00.js"><link rel="prefetch" href="/assets/js/8.f79af492.js"><link rel="prefetch" href="/assets/js/9.637db4cd.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f617ac60.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://cdn.jsdelivr.net/gh/guoxiaodong5160/cdn-images@latest/blog-images/20210216171303.svg" alt="郭晓冬的博客" class="logo"> <span class="site-name can-hide">郭晓冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JAVA" class="dropdown-title"><a href="/pages/224f8e/" class="link-title">JAVA</a> <span class="title" style="display:none;">JAVA</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/224f8e/" class="nav-link">并发</a></li><li class="dropdown-item"><!----> <a href="/pages/878afc/" class="nav-link">线程池</a></li><li class="dropdown-item"><!----> <a href="/pages/5d39a7/" class="nav-link">spring</a></li><li class="dropdown-item"><!----> <a href="/pages/511867/" class="nav-link">maven</a></li><li class="dropdown-item"><!----> <a href="/pages/2cabac/" class="nav-link">其他</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><a href="/pages/88ba01/" class="link-title">数据库</a> <span class="title" style="display:none;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/88ba01/" class="nav-link">redis</a></li><li class="dropdown-item"><!----> <a href="/pages/e3d657/" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="运维" class="dropdown-title"><a href="/pages/c0a252/" class="link-title">运维</a> <span class="title" style="display:none;">运维</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/c0a252/" class="nav-link">linux</a></li><li class="dropdown-item"><!----> <a href="/pages/2a2df0/" class="nav-link">zookeeper</a></li><li class="dropdown-item"><!----> <a href="/pages/54315c/" class="nav-link">docker</a></li><li class="dropdown-item"><!----> <a href="/pages/7516d4/" class="nav-link">terminal</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><a href="/pages/cad352/" class="link-title">算法</a> <span class="title" style="display:none;">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/cad352/" class="nav-link">资料</a></li><li class="dropdown-item"><!----> <a href="/pages/877b28/" class="nav-link">leetCode-简单</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/pages/c33358/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/c33358/" class="nav-link">blog</a></li><li class="dropdown-item"><!----> <a href="/pages/91e143/" class="nav-link">其他</a></li></ul></div></div><div class="nav-item"><a href="/pages/44ff0f/" class="nav-link">关于</a></div> <a href="https://github.com/guoxiaodong5160" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JAVA" class="dropdown-title"><a href="/pages/224f8e/" class="link-title">JAVA</a> <span class="title" style="display:none;">JAVA</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/224f8e/" class="nav-link">并发</a></li><li class="dropdown-item"><!----> <a href="/pages/878afc/" class="nav-link">线程池</a></li><li class="dropdown-item"><!----> <a href="/pages/5d39a7/" class="nav-link">spring</a></li><li class="dropdown-item"><!----> <a href="/pages/511867/" class="nav-link">maven</a></li><li class="dropdown-item"><!----> <a href="/pages/2cabac/" class="nav-link">其他</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><a href="/pages/88ba01/" class="link-title">数据库</a> <span class="title" style="display:none;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/88ba01/" class="nav-link">redis</a></li><li class="dropdown-item"><!----> <a href="/pages/e3d657/" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="运维" class="dropdown-title"><a href="/pages/c0a252/" class="link-title">运维</a> <span class="title" style="display:none;">运维</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/c0a252/" class="nav-link">linux</a></li><li class="dropdown-item"><!----> <a href="/pages/2a2df0/" class="nav-link">zookeeper</a></li><li class="dropdown-item"><!----> <a href="/pages/54315c/" class="nav-link">docker</a></li><li class="dropdown-item"><!----> <a href="/pages/7516d4/" class="nav-link">terminal</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><a href="/pages/cad352/" class="link-title">算法</a> <span class="title" style="display:none;">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/cad352/" class="nav-link">资料</a></li><li class="dropdown-item"><!----> <a href="/pages/877b28/" class="nav-link">leetCode-简单</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/pages/c33358/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/c33358/" class="nav-link">blog</a></li><li class="dropdown-item"><!----> <a href="/pages/91e143/" class="nav-link">其他</a></li></ul></div></div><div class="nav-item"><a href="/pages/44ff0f/" class="nav-link">关于</a></div> <a href="https://github.com/guoxiaodong5160" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>并发</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/224f8e/" class="sidebar-link">JVM</a></li><li><a href="/pages/080f8a/" class="sidebar-link">Synchronized</a></li><li><a href="/pages/addaab/" class="sidebar-link">volatile</a></li><li><a href="/pages/03b8a8/" class="sidebar-link">CAS</a></li><li><a href="/pages/826704/" class="sidebar-link">AQS</a></li><li><a href="/pages/2dae78/" aria-current="page" class="active sidebar-link">ReentrantLock</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/2dae78/#介绍" class="sidebar-link">介绍</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/2dae78/#小-demo" class="sidebar-link">小 DEMO</a></li><li class="sidebar-sub-header"><a href="/pages/2dae78/#猜想" class="sidebar-link">猜想</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/2dae78/#底层实现" class="sidebar-link">底层实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/2dae78/#类结构" class="sidebar-link">类结构</a></li><li class="sidebar-sub-header"><a href="/pages/2dae78/#举例" class="sidebar-link">举例</a></li></ul></li></ul></li><li><a href="/pages/83317e/" class="sidebar-link">Condition介绍及使用</a></li><li><a href="/pages/b07cc7/" class="sidebar-link">Condition源码解析</a></li><li><a href="/pages/993471/" class="sidebar-link">jdk1.7-HashMap</a></li><li><a href="/pages/0125a3/" class="sidebar-link">jdk1.7-ConcurrentHashMap</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>线程池</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>spring</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>maven</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-33863c7e><div class="articleInfo" data-v-33863c7e><ul class="breadcrumbs" data-v-33863c7e><li data-v-33863c7e><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-33863c7e></a></li> <li data-v-33863c7e><span data-v-33863c7e>JAVA</span></li> <li data-v-33863c7e><span data-v-33863c7e>并发</span></li> <!----></ul> <div class="info" data-v-33863c7e><div title="作者" class="author iconfont icon-touxiang" data-v-33863c7e><a href="javascript:;" data-v-33863c7e>郭晓冬</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-33863c7e><a href="javascript:;" data-v-33863c7e>2020-02-02</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">
+          ReentrantLock
+        </h1> <!----> <div class="theme-vdoing-content content__default"><blockquote><p><code>ReentrantLock</code> 依赖 AQS 实现，请先理解AQS</p></blockquote> <h2 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h2> <h3 id="小-demo"><a href="#小-demo" class="header-anchor">#</a> 小 DEMO</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>ReentrantLock lock = new ReentrantLock();
+
+public void demo() {
+    lock.lock();
+    try {
+        doSomething();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        lock.unlock();
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>如上为<code>ReentrantLock</code>的简单使用, 线程进来时进行加锁, 运行方法, 解锁, 十分简洁</p> <h3 id="猜想"><a href="#猜想" class="header-anchor">#</a> 猜想</h3> <h4 id="初步方案"><a href="#初步方案" class="header-anchor">#</a> 初步方案</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>volatile int status=0;//标识---是否有线程在同步块-----是否有线程上锁成功
+void lock(){
+	while(!compareAndSet(0,1)){
+	    sleep(10);
+	}
+	//lock
+}
+void unlock(){
+	status=0;
+}
+boolean compareAndSet(int except,int newValue){
+	//cas操作,修改status成功则返回true
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>缺点:</p> <ol><li>睡眠多久合适?</li> <li>如果并发高, 每一个都睡眠后做比对,很占用 CPU</li> <li>不能实现公平锁</li></ol> <h4 id="完美方案"><a href="#完美方案" class="header-anchor">#</a> 完美方案</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>volatile int status=0;//标识---是否有线程在同步块-----是否有线程上锁成功
+void lock(){
+	while(!compareAndSet(0,1)){
+	    // 将该线程加入等待列队
+	    addAQS(Thread.currentThread());
+	    // 将该线程睡眠让出CPU
+	    park();
+	}
+	//lock
+}
+void unlock(){
+	status=0;
+	// 解锁时从列队中取出一个, 然后让其运行
+	Thread t = takeAQS();
+	unPark(t);
+}
+boolean compareAndSet(int except,int newValue){
+	//cas操作,修改status成功则返回true
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>那么问题来了, 如果将指定线程阻塞与运行呢? <code>LockSupport</code>类解决了这个问题</p> <h4 id="locksupport"><a href="#locksupport" class="header-anchor">#</a> LockSupport</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>public class LockSupport {
+    private LockSupport() {}
+    
+    public static void park() {
+        UNSAFE.park(false, 0L);
+    }
+    public static void unpark(Thread thread) {
+        if (thread != null)
+            UNSAFE.unpark(thread);
+    } 
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>这个类中的方法是直接调用 <code>UNSAFE</code> 类的方法, 都是 <code>native</code> 方法; 调用的是c或c++函数. 我们理解如何使用就好</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 当前线程让出CPU
+LockSupport.park();
+// 指定线程t运行
+LockSupport.unPark(t);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="底层实现"><a href="#底层实现" class="header-anchor">#</a> 底层实现</h2> <h3 id="类结构"><a href="#类结构" class="header-anchor">#</a> 类结构</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>class ReentrantLock{
+
+    // 内部抽象类 继承 AQS
+    abstract static class Sync extends AbstractQueuedSynchronizer {
+    }
+    
+    // 内部类-公平锁
+    static final class FairSync extends Sync {
+    }
+    
+    // 内部类-非公平锁
+    static final class NonfairSync extends Sync {
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="举例"><a href="#举例" class="header-anchor">#</a> 举例</h3> <p>我们依据排队买票举例: 现有abcd四位客人来买票如下</p> <p><code>窗口 : a &lt; b &lt; c &lt; d</code></p> <p>此时a正在办理那么排队的人中有bcd, 可以理解为</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>办理中: a
+排队: null &lt; b &lt; c &lt; d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="创建对象"><a href="#创建对象" class="header-anchor">#</a> 创建对象</h4> <p><code>ReentrantLock lock = new ReentrantLock();</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public ReentrantLock() {
+    // 默认创建非公平锁
+    sync = new NonfairSync();
+}
+
+// 传入boolean值来创建 
+// true: 公平锁 false: 非公平锁
+public ReentrantLock(boolean fair) {
+    sync = fair ? new FairSync() : new NonfairSync();
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="加锁"><a href="#加锁" class="header-anchor">#</a> 加锁</h4> <p><code>lock.lock();</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public void lock() {
+    sync.lock();
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>此处调用的是抽象类的lock方法, 让我们来看下它们有什么区别</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 公平锁
+FairSync extends Sync {
+    final void lock() {
+        // 排队
+        acquire(1);
+    }
+}
+
+// 非公平锁
+NonfairSync extends Sync {
+    final void lock() {
+        // 尝试获取锁
+        if (compareAndSetState(0, 1))
+            setExclusiveOwnerThread(Thread.currentThread());
+        else
+            // 获取不到锁就排队
+            acquire(1);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p><strong>可以看到, 公平锁和非公平锁的第一个区别是在非公平锁调用时先去尝试获取下锁</strong></p> <p>举例:</p> <p><code>窗口 : a &lt; b &lt; c &lt; d</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>办理中: a
+排队: null &lt; b &lt; c &lt; d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>此时来个新乘客f</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>公平锁: 
+    办理中: a
+    排队: null &lt; b &lt; c &lt; d &lt; e
+非公平锁:
+    a正好办理完了, f会和b争夺锁, 如果f抢到了, 那么f直接执行
+        办理中: f
+        排队: null &lt; b &lt; c &lt; d &lt; e
+    a没办理完
+        办理中: a
+        排队: null &lt; b &lt; c &lt; d &lt; e
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="tryacquire-arg"><a href="#tryacquire-arg" class="header-anchor">#</a> tryAcquire(arg)</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>public final void acquire(int arg) {
+    if (!tryAcquire(arg) &amp;&amp;
+        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+        selfInterrupt();
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>关于 <code>#acquire</code> 方法在 AQS中已经讲过了, 该方法中调用了 <code>抽象方法#tryAcquire</code> , 而 <code>ReentrantLock</code> 对该方法编写了两套不同的实现</p> <h5 id="公平锁"><a href="#公平锁" class="header-anchor">#</a> 公平锁</h5> <div class="language- line-numbers-mode"><pre class="language-text"><code>protected final boolean tryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    // 获取当前加锁状态
+    int c = getState();
+    // 未加锁
+    if (c == 0) {
+        // hasQueuedPredecessors() 判断自己是否需要排队 [后面单独说]
+        // compareAndSetState() 如果不需要排队那么尝试竞争锁
+        if (!hasQueuedPredecessors() &amp;&amp;
+            compareAndSetState(0, acquires)) {
+            // setExclusiveOwnerThread() 设置当前线程为拥有锁的线程，方面后面判断是不是重入
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    // 加锁的话需要判断重入, 如果该线程等于正在执行线程, 则state + 1
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc &lt; 0)
+            throw new Error(&quot;Maximum lock count exceeded&quot;);
+        setState(nextc);
+        return true;
+    }
+    return false;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h5 id="非公平锁"><a href="#非公平锁" class="header-anchor">#</a> 非公平锁</h5> <div class="language- line-numbers-mode"><pre class="language-text"><code>protected final boolean tryAcquire(int acquires) {
+    // 调用父类 sync 的方法
+    return nonfairTryAcquire(acquires);
+}
+
+
+final boolean nonfairTryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    int c = getState();
+    if (c == 0) {
+        if (compareAndSetState(0, acquires)) {
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc &lt; 0) // overflow
+            throw new Error(&quot;Maximum lock count exceeded&quot;);
+        setState(nextc);
+        return true;
+    }
+    return false;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h4 id="公平锁与非公平锁的区别"><a href="#公平锁与非公平锁的区别" class="header-anchor">#</a> 公平锁与非公平锁的区别</h4> <p>比较后发现, 公平锁比非公平锁在未加锁状态下多了判断是否需要排队, 其他代码一模一样</p> <p>至此<code>FairSync</code> 和 <code>NonfairSync</code> 进行实现的方法已经比较完毕, 我们可以得出结论:</p> <ol><li>非公平锁在新的线程进来时直接去抢占锁, 抢占不到再排队</li> <li>公平锁进来后直接进行排队获取</li></ol> <h4 id="hasqueuedpredecessors"><a href="#hasqueuedpredecessors" class="header-anchor">#</a> hasQueuedPredecessors()</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>public final boolean hasQueuedPredecessors() {
+    // 尾结点
+    Node t = tail;
+    // 头结点
+    Node h = head;
+    Node s;
+    // h.next 为队列首个对象, 如果这个
+    return h != t &amp;&amp;
+        ((s = h.next) == null || s.thread != Thread.currentThread());
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><ol><li><strong>h != t</strong> <ul><li>列队为空的情况下h=null t=null</li> <li>列队不为null并且没有排队的情况下, 头结点和尾结点指向同一个对象, 对象中的thread为空</li></ul></li> <li><strong>((s = h.next) == null || s.thread != Thread.currentThread())</strong> <ul><li>如果头结点!=尾结点, 那么判断列队中第一个线程是否是当前线程, 如果是当前线程, 则认为没有排队</li></ul></li></ol> <h4 id="解锁"><a href="#解锁" class="header-anchor">#</a> 解锁</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>class ReentrantLock {
+    private final Sync sync;
+    public void unlock() {
+        // 1. 调用 sync 父类 AQS 的方法
+        sync.release(1);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>abstract static class Sync extends AbstractQueuedSynchronizer {
+    // 4. 该方法如果解锁成功会返回true, 否则返回false
+    protected final boolean tryRelease(int releases) {
+        // 对状态值进行 -1 操作
+        int c = getState() - releases;
+        if (Thread.currentThread() != getExclusiveOwnerThread())
+            throw new IllegalMonitorStateException();
+        boolean free = false;
+        // c == 0 解锁成功
+        if (c == 0) {
+            free = true;
+            setExclusiveOwnerThread(null);
+        }
+        // 重入锁修改 state
+        setState(c);
+        return free;
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>abstract class AbstractQueuedSynchronizer {
+    // 2.
+    public final boolean release(int arg) {
+        // 3. tryRelease(arg) 调用 Sync 的方法 返回true表示解锁成功
+        if (tryRelease(arg)) {
+            Node h = head;
+            // h.waitStatus != 0 代表后面有人排队
+            if (h != null &amp;&amp; h.waitStatus != 0)
+                // 唤醒下一个线程
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+    
+    private void unparkSuccessor(Node node) {
+        /*
+         * If status is negative (i.e., possibly needing signal) try
+         * to clear in anticipation of signalling.  It is OK if this
+         * fails or if status is changed by waiting thread.
+         */
+        int ws = node.waitStatus;
+        if (ws &lt; 0)
+            // 头结点 waitStatus 改为0
+            compareAndSetWaitStatus(node, ws, 0);
+    
+        // 获取下一个线程
+        Node s = node.next;
+        // 如果下一个线程为空或者标识为取消
+        if (s == null || s.waitStatus &gt; 0) {
+            // 置空
+            s = null;
+            // 从尾结点向前进行循环, 如果循环到的值为null 或者 循环到 node 的位置 则停止
+            for (Node t = tail; t != null &amp;&amp; t != node; t = t.prev)
+                // 此操作是为了从后向前找出第一个可用的结点
+                if (t.waitStatus &lt;= 0)
+                    s = t;
+        }
+        // 如果存在下一个线程则进行unpark操作
+        if (s != null)
+            LockSupport.unpark(s.thread);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div></div></div> <!----> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021/03/30, 13:57:59</span></div></div> <div class="page-nav-wapper"><!----> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/826704/" class="prev">AQS</a></span> <span class="next"><a href="/pages/83317e/">Condition介绍及使用</a>→
+      </span></p></div></div></div> <!----></main></div> <div class="footer"><div class="icons"><a href="mailto:576603780@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/yuyujson" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=5381381410" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2018-2021
+    <span>郭晓冬 | 备案号: <a href="https://beian.miit.gov.cn" target="_blank">京ICP备19016086号</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">跟随系统</li><li class="iconfont icon-rijianmoshi">浅色模式</li><li class="iconfont icon-yejianmoshi">深色模式</li><li class="iconfont icon-yuedu">阅读模式</li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.7f43635b.js" defer></script><script src="/assets/js/3.9d819986.js" defer></script><script src="/assets/js/13.766aff0b.js" defer></script>
+  </body>
+</html>
